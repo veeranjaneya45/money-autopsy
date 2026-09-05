@@ -1,719 +1,482 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+<title>Benchmark | Money Autopsy</title>
 
-    <title>Benchmark | Money Autopsy</title>
+<style>
+*{box-sizing:border-box}
 
-    <!-- Cache-busted CSS -->
-    <link
-        rel="stylesheet"
-        href="css/style.css?v=20260905"
-    >
+body{
+    margin:0;
+    background:#050b12;
+    color:#e8f0f8;
+    font-family:Inter,Segoe UI,Arial,sans-serif;
+}
+
+.app{
+    display:flex;
+    min-height:100vh;
+}
+
+.sidebar{
+    width:280px;
+    background:#070d15;
+    border-right:1px solid #1b2a3a;
+    padding:32px 20px;
+    position:fixed;
+    inset:0 auto 0 0;
+}
+
+.brand{
+    display:flex;
+    gap:12px;
+    align-items:flex-start;
+    margin:4px 10px 55px;
+}
+
+.dot{
+    width:13px;
+    height:13px;
+    margin-top:6px;
+    border-radius:50%;
+    background:#35bdf4;
+}
+
+.brand-name{
+    font-size:18px;
+    font-weight:800;
+    letter-spacing:.4px;
+}
+
+.brand-sub{
+    margin-top:7px;
+    color:#71859c;
+    font-size:12px;
+    line-height:1.4;
+    letter-spacing:1.2px;
+}
+
+.nav a{
+    display:block;
+    color:#aab9c9;
+    text-decoration:none;
+    padding:14px 14px;
+    margin:6px 0;
+    border-radius:11px;
+}
+
+.nav a:hover,
+.nav a.active{
+    background:#101b28;
+    color:#fff;
+    border:1px solid #244158;
+}
+
+.footer{
+    position:absolute;
+    bottom:30px;
+    left:30px;
+    color:#687c92;
+    font-size:12px;
+    line-height:1.6;
+}
+
+.main{
+    margin-left:280px;
+    width:calc(100% - 280px);
+    padding:42px 38px;
+}
+
+.container{
+    max-width:1400px;
+    margin:auto;
+}
+
+.eyebrow{
+    color:#42c6ff;
+    font-size:12px;
+    font-weight:800;
+    letter-spacing:2px;
+    text-transform:uppercase;
+}
+
+h1{
+    font-size:40px;
+    margin:10px 0;
+    letter-spacing:-1.3px;
+}
+
+.subtitle{
+    color:#8195aa;
+    margin-bottom:28px;
+}
+
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:20px;
+}
+
+.badge{
+    padding:9px 14px;
+    border-radius:999px;
+    background:#0b2118;
+    border:1px solid #1e633f;
+    color:#54e38e;
+    font-size:12px;
+    font-weight:800;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+    margin:25px 0;
+}
+
+.card{
+    background:#0b1622;
+    border:1px solid #1c2d40;
+    border-radius:15px;
+    padding:21px;
+}
+
+.label{
+    color:#71869d;
+    font-size:11px;
+    letter-spacing:1px;
+    text-transform:uppercase;
+}
+
+.value{
+    margin-top:9px;
+    font-size:32px;
+    font-weight:850;
+}
+
+.pass{
+    color:#54e38e;
+}
+
+.section{
+    background:#0b1622;
+    border:1px solid #1c2d40;
+    border-radius:15px;
+    padding:23px;
+    margin-top:18px;
+}
+
+.section h2{
+    margin:0 0 6px;
+    font-size:18px;
+}
+
+.muted{
+    color:#72869d;
+    font-size:13px;
+}
+
+.metrics{
+    display:grid;
+    grid-template-columns:repeat(6,1fr);
+    gap:10px;
+    margin-top:18px;
+}
+
+.metric{
+    background:#07111b;
+    border:1px solid #192a3c;
+    border-radius:11px;
+    padding:16px;
+}
+
+.metric .value{
+    font-size:25px;
+}
+
+.performance{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+    margin-top:15px;
+}
+
+.notice{
+    margin-top:18px;
+    border-left:3px solid #d4a62c;
+    background:#171406;
+    padding:17px;
+    color:#c7b889;
+    line-height:1.55;
+    border-radius:0 10px 10px 0;
+}
+
+.principle{
+    margin-top:18px;
+    border-left:3px solid #42c6ff;
+    background:#081521;
+    padding:18px;
+    color:#b7c7d8;
+    line-height:1.6;
+    border-radius:0 10px 10px 0;
+}
+
+button{
+    border:1px solid #2d6e91;
+    background:#0c2332;
+    color:#dff6ff;
+    padding:10px 16px;
+    border-radius:9px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#123449;
+}
+
+.loading{
+    text-align:center;
+    padding:35px;
+    color:#8ba0b6;
+}
+
+@media(max-width:1000px){
+    .metrics{grid-template-columns:repeat(3,1fr)}
+    .grid{grid-template-columns:1fr 1fr}
+}
+
+@media(max-width:700px){
+    .sidebar{
+        width:220px;
+    }
+    .main{
+        margin-left:220px;
+        width:calc(100% - 220px);
+        padding:25px 18px;
+    }
+    .grid,.metrics{
+        grid-template-columns:1fr;
+    }
+}
+</style>
 </head>
 
 <body>
 
-<div class="app-shell">
+<div class="app">
 
-    <!-- =====================================================
-         SIDEBAR
-         ===================================================== -->
+<aside class="sidebar">
 
-    <aside class="sidebar">
+<div class="brand">
+<div class="dot"></div>
+<div>
+<div class="brand-name">MONEY AUTOPSY</div>
+<div class="brand-sub">FINANCIAL INVESTIGATION ENGINE</div>
+</div>
+</div>
 
-        <div class="brand">
+<nav class="nav">
+<a href="dashboard.html">◇ Dashboard</a>
+<a href="dashboard.html#cases">⌕ Investigations</a>
+<a class="active" href="benchmark.html">◉ Benchmark</a>
+</nav>
 
-            <div class="brand-mark">
-                M
-            </div>
+<div class="footer">
+<strong>Truth is deterministic.</strong><br>
+AI explains the evidence.
+</div>
 
-            <div class="brand-text">
+</aside>
 
-                <div class="brand-name">
-                    MONEY AUTOPSY
-                </div>
+<main class="main">
 
-                <div class="brand-subtitle">
-                    FINANCIAL INVESTIGATION
-                </div>
+<div class="container">
 
-            </div>
+<div class="topbar">
 
-        </div>
+<div>
+<div class="eyebrow">Validation Lab</div>
+<h1>System Benchmark</h1>
+<div class="subtitle">
+Measured performance across the complete synthetic financial-control pipeline.
+</div>
+</div>
 
-
-        <nav class="sidebar-nav">
-
-            <a
-                href="index.html"
-                class="nav-item"
-            >
-                <span class="nav-icon">⌂</span>
-                <span>Command Center</span>
-            </a>
-
-
-            <a
-                href="dashboard.html"
-                class="nav-item"
-            >
-                <span class="nav-icon">⚠</span>
-                <span>Exceptions</span>
-            </a>
-
-
-            <a
-                href="investigation.html"
-                class="nav-item"
-            >
-                <span class="nav-icon">⌕</span>
-                <span>Investigations</span>
-            </a>
-
-
-            <a
-                href="benchmark.html"
-                class="nav-item active"
-            >
-                <span class="nav-icon">▦</span>
-                <span>Benchmark</span>
-            </a>
-
-        </nav>
-
-
-        <div class="sidebar-footer">
-
-            <div class="system-status">
-
-                <span class="status-dot"></span>
-
-                <span>
-                    SYSTEM OPERATIONAL
-                </span>
-
-            </div>
-
-
-            <div class="sidebar-version">
-                Money Autopsy v0.5.0
-            </div>
-
-        </div>
-
-    </aside>
-
-
-    <!-- =====================================================
-         MAIN CONTENT
-         ===================================================== -->
-
-    <main class="main-content">
-
-
-        <!-- HEADER -->
-
-        <header class="page-header">
-
-            <div class="page-header-copy">
-
-                <div class="eyebrow">
-                    CONTROL VALIDATION
-                </div>
-
-                <h1>
-                    Benchmark
-                </h1>
-
-                <p class="page-description">
-                    Measured reliability of the deterministic
-                    financial-control pipeline.
-                </p>
-
-            </div>
-
-
-            <div class="header-actions">
-
-                <div
-                    id="pipelineBadge"
-                    class="pipeline-badge"
-                >
-                    DETERMINISTIC PIPELINE
-                </div>
-
-
-                <button
-                    id="runBenchmarkBtn"
-                    class="primary-button"
-                    type="button"
-                >
-                    Run Benchmark
-                </button>
-
-            </div>
-
-        </header>
-
-
-        <!-- =================================================
-             LOADING
-             ================================================= -->
-
-        <section
-            id="benchmarkLoading"
-            class="loading-panel hidden"
-        >
-
-            <div class="spinner"></div>
-
-            <div class="loading-copy">
-
-                <strong>
-                    Running 300-case benchmark...
-                </strong>
-
-                <p>
-                    Evaluating deterministic financial controls.
-                    This can take around 1–2 minutes.
-                </p>
-
-            </div>
-
-        </section>
-
-
-        <!-- =================================================
-             ERROR
-             ================================================= -->
-
-        <section
-            id="benchmarkError"
-            class="error-panel hidden"
-        >
-
-            <div class="error-title">
-                Benchmark unavailable
-            </div>
-
-            <div
-                id="benchmarkErrorText"
-                class="error-text"
-            ></div>
-
-        </section>
-
-
-        <!-- =================================================
-             HERO METRICS
-             ================================================= -->
-
-        <section class="benchmark-hero">
-
-
-            <div class="hero-stat">
-
-                <div class="hero-label">
-                    CASES EVALUATED
-                </div>
-
-                <div
-                    id="totalCases"
-                    class="hero-number"
-                >
-                    —
-                </div>
-
-                <div class="hero-caption">
-                    deterministic financial cases
-                </div>
-
-            </div>
-
-
-            <div class="hero-stat hero-stat-primary">
-
-                <div class="hero-label">
-                    OVERALL CONTROL ACCURACY
-                </div>
-
-                <div
-                    id="overallAccuracy"
-                    class="hero-number"
-                >
-                    —
-                </div>
-
-                <div class="hero-caption">
-                    six measured control dimensions
-                </div>
-
-            </div>
-
-
-            <div class="hero-stat">
-
-                <div class="hero-label">
-                    FAILED CASES
-                </div>
-
-                <div
-                    id="failedCases"
-                    class="hero-number"
-                >
-                    —
-                </div>
-
-                <div class="hero-caption">
-                    benchmark failures
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =================================================
-             CONTROL ACCURACY
-             ================================================= -->
-
-        <section class="section">
-
-            <div class="section-heading">
-
-                <div>
-
-                    <div class="eyebrow">
-                        MEASURED RESULTS
-                    </div>
-
-                    <h2>
-                        Control Accuracy
-                    </h2>
-
-                </div>
-
-            </div>
-
-
-            <div class="metric-grid">
-
-
-                <!-- CLASSIFICATION -->
-
-                <div class="metric-card">
-
-                    <div class="metric-number">
-                        01
-                    </div>
-
-                    <div class="metric-title">
-                        Classification
-                    </div>
-
-                    <div
-                        id="classificationAccuracy"
-                        class="metric-value"
-                    >
-                        —
-                    </div>
-
-                    <div
-                        id="classificationCount"
-                        class="metric-detail"
-                    >
-                        —
-                    </div>
-
-                </div>
-
-
-                <!-- STATUS -->
-
-                <div class="metric-card">
-
-                    <div class="metric-number">
-                        02
-                    </div>
-
-                    <div class="metric-title">
-                        Status
-                    </div>
-
-                    <div
-                        id="statusAccuracy"
-                        class="metric-value"
-                    >
-                        —
-                    </div>
-
-                    <div
-                        id="statusCount"
-                        class="metric-detail"
-                    >
-                        —
-                    </div>
-
-                </div>
-
-
-                <!-- RECOVERY -->
-
-                <div class="metric-card">
-
-                    <div class="metric-number">
-                        03
-                    </div>
-
-                    <div class="metric-title">
-                        Recovery Amount
-                    </div>
-
-                    <div
-                        id="recoveryAccuracy"
-                        class="metric-value"
-                    >
-                        —
-                    </div>
-
-                    <div
-                        id="recoveryCount"
-                        class="metric-detail"
-                    >
-                        —
-                    </div>
-
-                </div>
-
-
-                <!-- RESOLUTION -->
-
-                <div class="metric-card">
-
-                    <div class="metric-number">
-                        04
-                    </div>
-
-                    <div class="metric-title">
-                        Resolution
-                    </div>
-
-                    <div
-                        id="resolutionAccuracy"
-                        class="metric-value"
-                    >
-                        —
-                    </div>
-
-                    <div
-                        id="resolutionCount"
-                        class="metric-detail"
-                    >
-                        —
-                    </div>
-
-                </div>
-
-
-                <!-- UNRESOLVED -->
-
-                <div class="metric-card">
-
-                    <div class="metric-number">
-                        05
-                    </div>
-
-                    <div class="metric-title">
-                        Unresolved Preservation
-                    </div>
-
-                    <div
-                        id="unresolvedAccuracy"
-                        class="metric-value"
-                    >
-                        —
-                    </div>
-
-                    <div
-                        id="unresolvedCount"
-                        class="metric-detail"
-                    >
-                        —
-                    </div>
-
-                </div>
-
-
-                <!-- PROOF -->
-
-                <div class="metric-card">
-
-                    <div class="metric-number">
-                        06
-                    </div>
-
-                    <div class="metric-title">
-                        Proof Chain Integrity
-                    </div>
-
-                    <div
-                        id="proofAccuracy"
-                        class="metric-value"
-                    >
-                        —
-                    </div>
-
-                    <div
-                        id="proofCount"
-                        class="metric-detail"
-                    >
-                        —
-                    </div>
-
-                </div>
-
-
-            </div>
-
-        </section>
-
-
-        <!-- =================================================
-             PERFORMANCE
-             ================================================= -->
-
-        <section class="section">
-
-            <div class="section-heading">
-
-                <div>
-
-                    <div class="eyebrow">
-                        THROUGHPUT
-                    </div>
-
-                    <h2>
-                        Pipeline Performance
-                    </h2>
-
-                </div>
-
-            </div>
-
-
-            <div class="performance-grid">
-
-
-                <div class="performance-card">
-
-                    <div class="performance-label">
-                        EXECUTION TIME
-                    </div>
-
-                    <div
-                        id="elapsedTime"
-                        class="performance-value"
-                    >
-                        —
-                    </div>
-
-                    <div class="performance-unit">
-                        seconds
-                    </div>
-
-                </div>
-
-
-                <div class="performance-card">
-
-                    <div class="performance-label">
-                        THROUGHPUT
-                    </div>
-
-                    <div
-                        id="throughput"
-                        class="performance-value"
-                    >
-                        —
-                    </div>
-
-                    <div class="performance-unit">
-                        cases / second
-                    </div>
-
-                </div>
-
-
-                <div class="performance-card">
-
-                    <div class="performance-label">
-                        BENCHMARK VERSION
-                    </div>
-
-                    <div
-                        id="benchmarkVersion"
-                        class="performance-value"
-                    >
-                        —
-                    </div>
-
-                    <div class="performance-unit">
-                        deterministic benchmark
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =================================================
-             FAILED CASES
-             ================================================= -->
-
-        <section class="section">
-
-            <div class="section-heading">
-
-                <div>
-
-                    <div class="eyebrow">
-                        FAILURE ANALYSIS
-                    </div>
-
-                    <h2>
-                        Failed Cases
-                    </h2>
-
-                </div>
-
-            </div>
-
-
-            <div
-                id="failurePanel"
-                class="empty-panel"
-            >
-
-                <div class="empty-icon">
-                    ✓
-                </div>
-
-                <h3>
-                    No failed cases
-                </h3>
-
-                <p>
-                    All benchmark cases passed the
-                    deterministic pipeline.
-                </p>
-
-            </div>
-
-        </section>
-
-
-        <!-- =================================================
-             AI BOUNDARY
-             ================================================= -->
-
-        <section class="section">
-
-            <div class="principle-card">
-
-                <div class="principle-badge">
-                    AI BOUNDARY
-                </div>
-
-                <h2>
-                    Financial truth stays deterministic.
-                </h2>
-
-                <p>
-                    AI explains financial evidence.
-                    Deterministic systems establish financial
-                    truth, calculate amounts, validate
-                    relationships and control state transitions.
-                </p>
-
-
-                <div class="principle-flow">
-
-                    <span>
-                        TRUTH ENGINE
-                    </span>
-
-                    <span class="flow-arrow">
-                        →
-                    </span>
-
-                    <span>
-                        PROOF CHAIN
-                    </span>
-
-                    <span class="flow-arrow">
-                        →
-                    </span>
-
-                    <span>
-                        VALIDATOR
-                    </span>
-
-                    <span class="flow-arrow">
-                        →
-                    </span>
-
-                    <span>
-                        DECISION
-                    </span>
-
-                </div>
-
-
-                <div class="ai-note">
-
-                    AI benchmark:
-
-                    <strong id="aiBenchmarkStatus">
-                        NOT EXECUTED
-                    </strong>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- FOOTER -->
-
-        <footer class="page-footer">
-
-            <span>
-                MONEY AUTOPSY
-            </span>
-
-            <span>
-                Deterministic Benchmark
-            </span>
-
-        </footer>
-
-
-    </main>
+<div class="badge">● DETERMINISTIC PIPELINE</div>
 
 </div>
 
+<div id="loading" class="section loading">
+<strong>Running 300-case benchmark…</strong>
+<br><br>
+This evaluates the complete deterministic pipeline. The first run can take around 1–2 minutes.
+</div>
 
-<!-- Cache-busted JavaScript -->
-<script src="js/benchmark.js?v=20260905"></script>
+<div id="content" style="display:none">
+
+<div class="grid">
+
+<div class="card">
+<div class="label">Total cases</div>
+<div id="total" class="value">—</div>
+</div>
+
+<div class="card">
+<div class="label">Failed cases</div>
+<div id="failed" class="value pass">—</div>
+</div>
+
+<div class="card">
+<div class="label">Throughput</div>
+<div id="throughput" class="value">—</div>
+</div>
+
+</div>
+
+<div class="section">
+
+<h2>Accuracy & Integrity</h2>
+<div class="muted">Full deterministic benchmark results</div>
+
+<div class="metrics">
+
+<div class="metric">
+<div class="label">Classification</div>
+<div id="classification" class="value pass">—</div>
+</div>
+
+<div class="metric">
+<div class="label">Status</div>
+<div id="status" class="value pass">—</div>
+</div>
+
+<div class="metric">
+<div class="label">Recovery</div>
+<div id="recovery" class="value pass">—</div>
+</div>
+
+<div class="metric">
+<div class="label">Resolution</div>
+<div id="resolution" class="value pass">—</div>
+</div>
+
+<div class="metric">
+<div class="label">Unresolved</div>
+<div id="unresolved" class="value pass">—</div>
+</div>
+
+<div class="metric">
+<div class="label">Proof Chain</div>
+<div id="proof" class="value pass">—</div>
+</div>
+
+</div>
+
+</div>
+
+<div class="section">
+
+<h2>Performance</h2>
+<div class="muted">Measured on the local deterministic pipeline</div>
+
+<div class="performance">
+
+<div class="metric">
+<div class="label">Processing time</div>
+<div id="elapsed" class="value">—</div>
+</div>
+
+<div class="metric">
+<div class="label">Cases / second</div>
+<div id="throughput2" class="value">—</div>
+</div>
+
+</div>
+
+</div>
+
+<div class="notice">
+<strong>AI benchmark intentionally excluded.</strong><br>
+The deterministic financial truth benchmark is measured independently from Gemini availability or API quota. AI is used to explain evidence, not establish financial truth.
+</div>
+
+<div class="principle">
+<strong>System principle</strong><br>
+AI explains financial evidence; deterministic systems establish financial truth.
+</div>
+
+</div>
+
+</div>
+
+</main>
+</div>
+
+<script src="js/api.js?v=20260905c"></script>
+
+<script>
+async function loadBenchmark(){
+
+    try{
+
+        const data = await window.getBenchmark();
+
+        console.log("Benchmark:", data);
+
+        document.getElementById("total").textContent =
+            data.total_cases;
+
+        document.getElementById("failed").textContent =
+            data.failed_count;
+
+        document.getElementById("classification").textContent =
+            data.classification.accuracy.toFixed(2) + "%";
+
+        document.getElementById("status").textContent =
+            data.status.accuracy.toFixed(2) + "%";
+
+        document.getElementById("recovery").textContent =
+            data.recovery.accuracy.toFixed(2) + "%";
+
+        document.getElementById("resolution").textContent =
+            data.resolution.accuracy.toFixed(2) + "%";
+
+        document.getElementById("unresolved").textContent =
+            data.unresolved_preservation.accuracy.toFixed(2) + "%";
+
+        document.getElementById("proof").textContent =
+            data.proof_chain.integrity.toFixed(2) + "%";
+
+        document.getElementById("elapsed").textContent =
+            data.performance.elapsed_seconds.toFixed(2) + "s";
+
+        document.getElementById("throughput").textContent =
+            data.performance.throughput_cases_per_second.toFixed(2);
+
+        document.getElementById("throughput2").textContent =
+            data.performance.throughput_cases_per_second.toFixed(2);
+
+        document.getElementById("loading").style.display = "none";
+        document.getElementById("content").style.display = "block";
+
+    }catch(error){
+
+        console.error(error);
+
+        document.getElementById("loading").innerHTML =
+            `<strong style="color:#ff9999">
+            Benchmark failed
+            </strong>
+            <br><br>${error.message}`;
+    }
+}
+
+loadBenchmark();
+</script>
 
 </body>
 </html>

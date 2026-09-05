@@ -35,13 +35,8 @@ GEMINI_RETRY_DELAY = float(
     )
 )
 
-
 if not GEMINI_API_KEY:
-    raise RuntimeError(
-        "GEMINI_API_KEY is not configured. "
-        "Add it to your .env file."
-    )
-
+    print("WARNING: GEMINI_API_KEY is not configured. AI investigation is disabled.")
 
 client = genai.Client(
     api_key=GEMINI_API_KEY
