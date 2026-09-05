@@ -1,0 +1,442 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Command Center | Money Autopsy
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css?v=20260905b"
+    >
+
+</head>
+
+
+<body>
+
+<div class="app-shell">
+
+
+    <!-- =====================================================
+         SIDEBAR
+         ===================================================== -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <div class="brand-mark">
+                M
+            </div>
+
+            <div>
+
+                <div class="brand-name">
+                    MONEY AUTOPSY
+                </div>
+
+                <div class="brand-subtitle">
+                    FINANCIAL INVESTIGATION
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+            <a
+                href="dashboard.html"
+                class="nav-item active"
+            >
+                <span class="nav-icon">⌂</span>
+                Command Center
+            </a>
+
+
+            <a
+                href="#cases"
+                class="nav-item"
+            >
+                <span class="nav-icon">⚠</span>
+                Exceptions
+            </a>
+
+
+            <a
+                href="#cases"
+                class="nav-item"
+            >
+                <span class="nav-icon">⌕</span>
+                Investigations
+            </a>
+
+
+            <a
+                href="benchmark.html"
+                class="nav-item"
+            >
+                <span class="nav-icon">▦</span>
+                Benchmark
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-footer">
+
+            <div class="system-status">
+
+                <span class="status-dot"></span>
+
+                SYSTEM OPERATIONAL
+
+            </div>
+
+            <div class="sidebar-version">
+                Money Autopsy v0.5.0
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =====================================================
+         MAIN
+         ===================================================== -->
+
+    <main class="main-content">
+
+
+        <div class="top-status">
+
+            <span class="status-dot"></span>
+
+            SYSTEM ONLINE
+
+        </div>
+
+
+        <section class="page-header">
+
+            <div>
+
+                <div class="eyebrow">
+                    FINANCIAL CONTROL CENTER
+                </div>
+
+                <h1>
+                    Where did the money go?
+                </h1>
+
+                <p class="page-description">
+                    Investigate financial exceptions,
+                    trace their evidence, and determine
+                    what requires human action.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             KPI CARDS
+             ================================================= -->
+
+        <section class="kpi-grid">
+
+
+            <div class="kpi-card">
+
+                <div class="kpi-label">
+                    TOTAL CASES
+                </div>
+
+                <div
+                    id="totalCases"
+                    class="kpi-value"
+                >
+                    —
+                </div>
+
+                <div
+                    id="totalCasesCaption"
+                    class="kpi-caption"
+                >
+                    Loading...
+                </div>
+
+            </div>
+
+
+            <div class="kpi-card">
+
+                <div class="kpi-label">
+                    NORMAL
+                </div>
+
+                <div
+                    id="normalCases"
+                    class="kpi-value"
+                >
+                    —
+                </div>
+
+                <div
+                    id="normalCaption"
+                    class="kpi-caption"
+                >
+                    No financial exception
+                </div>
+
+            </div>
+
+
+            <div class="kpi-card">
+
+                <div class="kpi-label">
+                    EXCEPTIONS
+                </div>
+
+                <div
+                    id="exceptionCases"
+                    class="kpi-value"
+                >
+                    —
+                </div>
+
+                <div
+                    id="exceptionCaption"
+                    class="kpi-caption"
+                >
+                    Require investigation
+                </div>
+
+            </div>
+
+
+            <div class="kpi-card">
+
+                <div class="kpi-label">
+                    UNRESOLVED
+                </div>
+
+                <div
+                    id="unresolvedCases"
+                    class="kpi-value"
+                >
+                    —
+                </div>
+
+                <div
+                    id="unresolvedCaption"
+                    class="kpi-caption"
+                >
+                    Additional evidence required
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             PHILOSOPHY
+             ================================================= -->
+
+        <section class="system-strip">
+
+            <div class="eyebrow">
+                INVESTIGATION SYSTEM
+            </div>
+
+            <strong>
+                Deterministic financial truth engine
+            </strong>
+
+            <div class="system-strip-links">
+
+                <a href="dashboard.html">
+                    Dashboard
+                </a>
+
+                <a href="benchmark.html">
+                    Benchmark
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             CASE QUEUE
+             ================================================= -->
+
+        <section
+            id="cases"
+            class="content-card"
+        >
+
+            <div class="card-header">
+
+                <div>
+
+                    <div class="eyebrow">
+                        INVESTIGATION QUEUE
+                    </div>
+
+                    <h2>
+                        Cases requiring attention
+                    </h2>
+
+                </div>
+
+
+                <button
+                    id="refreshButton"
+                    class="secondary-button"
+                >
+                    Refresh
+                </button>
+
+            </div>
+
+
+            <div
+                id="dashboardError"
+                class="error-panel hidden"
+            ></div>
+
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>CASE</th>
+
+                            <th>TYPE</th>
+
+                            <th>EXPECTED</th>
+
+                            <th>OBSERVED</th>
+
+                            <th>RECOVERY</th>
+
+                            <th>CONFIDENCE</th>
+
+                            <th>STATUS</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="casesBody">
+
+                        <tr>
+
+                            <td
+                                colspan="7"
+                                class="table-empty"
+                            >
+                                Loading investigations...
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             PHILOSOPHY
+             ================================================= -->
+
+        <section class="content-card philosophy-card">
+
+            <div class="eyebrow">
+                INVESTIGATION PHILOSOPHY
+            </div>
+
+            <div class="flow-title">
+                FIND → TRACE → PROVE → EXPLAIN
+                → VALIDATE → DECIDE → REPLAY
+            </div>
+
+
+            <div class="philosophy-grid">
+
+                <div>
+                    <strong>Truth Engine</strong>
+                    <span>Deterministic financial truth</span>
+                </div>
+
+                <div>
+                    <strong>Proof Chain</strong>
+                    <span>Evidence-backed reasoning</span>
+                </div>
+
+                <div>
+                    <strong>Validator</strong>
+                    <span>Reject unsupported AI output</span>
+                </div>
+
+                <div>
+                    <strong>Human Control</strong>
+                    <span>Consequential decisions remain human</span>
+                </div>
+
+                <div>
+                    <strong>Replay</strong>
+                    <span>Reproduce without rerunning AI</span>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <footer class="page-footer">
+            MONEY AUTOPSY · Financial Investigation System
+        </footer>
+
+
+    </main>
+
+</div>
+
+
+<script
+    src="js/api.js?v=20260905b"
+></script>
+
+<script
+    src="js/dashboard.js?v=20260905b"
+></script>
+
+</body>
+
+</html>

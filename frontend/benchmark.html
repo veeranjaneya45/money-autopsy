@@ -1,0 +1,719 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Benchmark | Money Autopsy</title>
+
+    <!-- Cache-busted CSS -->
+    <link
+        rel="stylesheet"
+        href="css/style.css?v=20260905"
+    >
+</head>
+
+<body>
+
+<div class="app-shell">
+
+    <!-- =====================================================
+         SIDEBAR
+         ===================================================== -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <div class="brand-mark">
+                M
+            </div>
+
+            <div class="brand-text">
+
+                <div class="brand-name">
+                    MONEY AUTOPSY
+                </div>
+
+                <div class="brand-subtitle">
+                    FINANCIAL INVESTIGATION
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+            <a
+                href="index.html"
+                class="nav-item"
+            >
+                <span class="nav-icon">⌂</span>
+                <span>Command Center</span>
+            </a>
+
+
+            <a
+                href="dashboard.html"
+                class="nav-item"
+            >
+                <span class="nav-icon">⚠</span>
+                <span>Exceptions</span>
+            </a>
+
+
+            <a
+                href="investigation.html"
+                class="nav-item"
+            >
+                <span class="nav-icon">⌕</span>
+                <span>Investigations</span>
+            </a>
+
+
+            <a
+                href="benchmark.html"
+                class="nav-item active"
+            >
+                <span class="nav-icon">▦</span>
+                <span>Benchmark</span>
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-footer">
+
+            <div class="system-status">
+
+                <span class="status-dot"></span>
+
+                <span>
+                    SYSTEM OPERATIONAL
+                </span>
+
+            </div>
+
+
+            <div class="sidebar-version">
+                Money Autopsy v0.5.0
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+         ===================================================== -->
+
+    <main class="main-content">
+
+
+        <!-- HEADER -->
+
+        <header class="page-header">
+
+            <div class="page-header-copy">
+
+                <div class="eyebrow">
+                    CONTROL VALIDATION
+                </div>
+
+                <h1>
+                    Benchmark
+                </h1>
+
+                <p class="page-description">
+                    Measured reliability of the deterministic
+                    financial-control pipeline.
+                </p>
+
+            </div>
+
+
+            <div class="header-actions">
+
+                <div
+                    id="pipelineBadge"
+                    class="pipeline-badge"
+                >
+                    DETERMINISTIC PIPELINE
+                </div>
+
+
+                <button
+                    id="runBenchmarkBtn"
+                    class="primary-button"
+                    type="button"
+                >
+                    Run Benchmark
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <!-- =================================================
+             LOADING
+             ================================================= -->
+
+        <section
+            id="benchmarkLoading"
+            class="loading-panel hidden"
+        >
+
+            <div class="spinner"></div>
+
+            <div class="loading-copy">
+
+                <strong>
+                    Running 300-case benchmark...
+                </strong>
+
+                <p>
+                    Evaluating deterministic financial controls.
+                    This can take around 1–2 minutes.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             ERROR
+             ================================================= -->
+
+        <section
+            id="benchmarkError"
+            class="error-panel hidden"
+        >
+
+            <div class="error-title">
+                Benchmark unavailable
+            </div>
+
+            <div
+                id="benchmarkErrorText"
+                class="error-text"
+            ></div>
+
+        </section>
+
+
+        <!-- =================================================
+             HERO METRICS
+             ================================================= -->
+
+        <section class="benchmark-hero">
+
+
+            <div class="hero-stat">
+
+                <div class="hero-label">
+                    CASES EVALUATED
+                </div>
+
+                <div
+                    id="totalCases"
+                    class="hero-number"
+                >
+                    —
+                </div>
+
+                <div class="hero-caption">
+                    deterministic financial cases
+                </div>
+
+            </div>
+
+
+            <div class="hero-stat hero-stat-primary">
+
+                <div class="hero-label">
+                    OVERALL CONTROL ACCURACY
+                </div>
+
+                <div
+                    id="overallAccuracy"
+                    class="hero-number"
+                >
+                    —
+                </div>
+
+                <div class="hero-caption">
+                    six measured control dimensions
+                </div>
+
+            </div>
+
+
+            <div class="hero-stat">
+
+                <div class="hero-label">
+                    FAILED CASES
+                </div>
+
+                <div
+                    id="failedCases"
+                    class="hero-number"
+                >
+                    —
+                </div>
+
+                <div class="hero-caption">
+                    benchmark failures
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             CONTROL ACCURACY
+             ================================================= -->
+
+        <section class="section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <div class="eyebrow">
+                        MEASURED RESULTS
+                    </div>
+
+                    <h2>
+                        Control Accuracy
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="metric-grid">
+
+
+                <!-- CLASSIFICATION -->
+
+                <div class="metric-card">
+
+                    <div class="metric-number">
+                        01
+                    </div>
+
+                    <div class="metric-title">
+                        Classification
+                    </div>
+
+                    <div
+                        id="classificationAccuracy"
+                        class="metric-value"
+                    >
+                        —
+                    </div>
+
+                    <div
+                        id="classificationCount"
+                        class="metric-detail"
+                    >
+                        —
+                    </div>
+
+                </div>
+
+
+                <!-- STATUS -->
+
+                <div class="metric-card">
+
+                    <div class="metric-number">
+                        02
+                    </div>
+
+                    <div class="metric-title">
+                        Status
+                    </div>
+
+                    <div
+                        id="statusAccuracy"
+                        class="metric-value"
+                    >
+                        —
+                    </div>
+
+                    <div
+                        id="statusCount"
+                        class="metric-detail"
+                    >
+                        —
+                    </div>
+
+                </div>
+
+
+                <!-- RECOVERY -->
+
+                <div class="metric-card">
+
+                    <div class="metric-number">
+                        03
+                    </div>
+
+                    <div class="metric-title">
+                        Recovery Amount
+                    </div>
+
+                    <div
+                        id="recoveryAccuracy"
+                        class="metric-value"
+                    >
+                        —
+                    </div>
+
+                    <div
+                        id="recoveryCount"
+                        class="metric-detail"
+                    >
+                        —
+                    </div>
+
+                </div>
+
+
+                <!-- RESOLUTION -->
+
+                <div class="metric-card">
+
+                    <div class="metric-number">
+                        04
+                    </div>
+
+                    <div class="metric-title">
+                        Resolution
+                    </div>
+
+                    <div
+                        id="resolutionAccuracy"
+                        class="metric-value"
+                    >
+                        —
+                    </div>
+
+                    <div
+                        id="resolutionCount"
+                        class="metric-detail"
+                    >
+                        —
+                    </div>
+
+                </div>
+
+
+                <!-- UNRESOLVED -->
+
+                <div class="metric-card">
+
+                    <div class="metric-number">
+                        05
+                    </div>
+
+                    <div class="metric-title">
+                        Unresolved Preservation
+                    </div>
+
+                    <div
+                        id="unresolvedAccuracy"
+                        class="metric-value"
+                    >
+                        —
+                    </div>
+
+                    <div
+                        id="unresolvedCount"
+                        class="metric-detail"
+                    >
+                        —
+                    </div>
+
+                </div>
+
+
+                <!-- PROOF -->
+
+                <div class="metric-card">
+
+                    <div class="metric-number">
+                        06
+                    </div>
+
+                    <div class="metric-title">
+                        Proof Chain Integrity
+                    </div>
+
+                    <div
+                        id="proofAccuracy"
+                        class="metric-value"
+                    >
+                        —
+                    </div>
+
+                    <div
+                        id="proofCount"
+                        class="metric-detail"
+                    >
+                        —
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             PERFORMANCE
+             ================================================= -->
+
+        <section class="section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <div class="eyebrow">
+                        THROUGHPUT
+                    </div>
+
+                    <h2>
+                        Pipeline Performance
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="performance-grid">
+
+
+                <div class="performance-card">
+
+                    <div class="performance-label">
+                        EXECUTION TIME
+                    </div>
+
+                    <div
+                        id="elapsedTime"
+                        class="performance-value"
+                    >
+                        —
+                    </div>
+
+                    <div class="performance-unit">
+                        seconds
+                    </div>
+
+                </div>
+
+
+                <div class="performance-card">
+
+                    <div class="performance-label">
+                        THROUGHPUT
+                    </div>
+
+                    <div
+                        id="throughput"
+                        class="performance-value"
+                    >
+                        —
+                    </div>
+
+                    <div class="performance-unit">
+                        cases / second
+                    </div>
+
+                </div>
+
+
+                <div class="performance-card">
+
+                    <div class="performance-label">
+                        BENCHMARK VERSION
+                    </div>
+
+                    <div
+                        id="benchmarkVersion"
+                        class="performance-value"
+                    >
+                        —
+                    </div>
+
+                    <div class="performance-unit">
+                        deterministic benchmark
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             FAILED CASES
+             ================================================= -->
+
+        <section class="section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <div class="eyebrow">
+                        FAILURE ANALYSIS
+                    </div>
+
+                    <h2>
+                        Failed Cases
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="failurePanel"
+                class="empty-panel"
+            >
+
+                <div class="empty-icon">
+                    ✓
+                </div>
+
+                <h3>
+                    No failed cases
+                </h3>
+
+                <p>
+                    All benchmark cases passed the
+                    deterministic pipeline.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             AI BOUNDARY
+             ================================================= -->
+
+        <section class="section">
+
+            <div class="principle-card">
+
+                <div class="principle-badge">
+                    AI BOUNDARY
+                </div>
+
+                <h2>
+                    Financial truth stays deterministic.
+                </h2>
+
+                <p>
+                    AI explains financial evidence.
+                    Deterministic systems establish financial
+                    truth, calculate amounts, validate
+                    relationships and control state transitions.
+                </p>
+
+
+                <div class="principle-flow">
+
+                    <span>
+                        TRUTH ENGINE
+                    </span>
+
+                    <span class="flow-arrow">
+                        →
+                    </span>
+
+                    <span>
+                        PROOF CHAIN
+                    </span>
+
+                    <span class="flow-arrow">
+                        →
+                    </span>
+
+                    <span>
+                        VALIDATOR
+                    </span>
+
+                    <span class="flow-arrow">
+                        →
+                    </span>
+
+                    <span>
+                        DECISION
+                    </span>
+
+                </div>
+
+
+                <div class="ai-note">
+
+                    AI benchmark:
+
+                    <strong id="aiBenchmarkStatus">
+                        NOT EXECUTED
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- FOOTER -->
+
+        <footer class="page-footer">
+
+            <span>
+                MONEY AUTOPSY
+            </span>
+
+            <span>
+                Deterministic Benchmark
+            </span>
+
+        </footer>
+
+
+    </main>
+
+</div>
+
+
+<!-- Cache-busted JavaScript -->
+<script src="js/benchmark.js?v=20260905"></script>
+
+</body>
+</html>

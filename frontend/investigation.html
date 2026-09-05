@@ -1,0 +1,428 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Investigation | Money Autopsy
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css?v=20260905b"
+    >
+
+</head>
+
+
+<body>
+
+<div class="app-shell">
+
+
+    <!-- =====================================================
+         SIDEBAR
+         ===================================================== -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <div class="brand-mark">
+                M
+            </div>
+
+            <div>
+
+                <div class="brand-name">
+                    MONEY AUTOPSY
+                </div>
+
+                <div class="brand-subtitle">
+                    FINANCIAL INVESTIGATION
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+            <a
+                href="dashboard.html"
+                class="nav-item"
+            >
+                <span class="nav-icon">⌂</span>
+                Command Center
+            </a>
+
+
+            <a
+                href="dashboard.html#cases"
+                class="nav-item"
+            >
+                <span class="nav-icon">⚠</span>
+                Exceptions
+            </a>
+
+
+            <a
+                href="dashboard.html#cases"
+                class="nav-item active"
+            >
+                <span class="nav-icon">⌕</span>
+                Investigations
+            </a>
+
+
+            <a
+                href="benchmark.html"
+                class="nav-item"
+            >
+                <span class="nav-icon">▦</span>
+                Benchmark
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-footer">
+
+            <div class="system-status">
+
+                <span class="status-dot"></span>
+
+                SYSTEM OPERATIONAL
+
+            </div>
+
+            <div class="sidebar-version">
+                Money Autopsy v0.5.0
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =====================================================
+         MAIN
+         ===================================================== -->
+
+    <main class="main-content">
+
+
+        <div class="top-status">
+
+            <span class="status-dot"></span>
+
+            SYSTEM ONLINE
+
+        </div>
+
+
+        <section class="page-header">
+
+            <div>
+
+                <div class="eyebrow">
+                    FINANCIAL INVESTIGATION
+                </div>
+
+                <h1>
+                    Follow the money.
+                </h1>
+
+                <p class="page-description">
+                    Trace the transaction through source
+                    records, establish deterministic truth,
+                    and inspect the evidence chain.
+                </p>
+
+            </div>
+
+
+            <a
+                href="dashboard.html#cases"
+                class="secondary-button"
+            >
+                ← Back to investigations
+            </a>
+
+        </section>
+
+
+        <!-- =================================================
+             LOADING
+             ================================================= -->
+
+        <section
+            id="loadingPanel"
+            class="loading-panel hidden"
+        >
+
+            <div class="spinner"></div>
+
+            <div>
+
+                <strong>
+                    Building investigation...
+                </strong>
+
+                <p>
+                    Running deterministic financial analysis.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             ERROR
+             ================================================= -->
+
+        <section
+            id="errorPanel"
+            class="error-panel hidden"
+        ></section>
+
+
+        <!-- =================================================
+             CASE HEADER
+             ================================================= -->
+
+        <section class="case-hero">
+
+            <div>
+
+                <div class="eyebrow">
+                    CASE
+                </div>
+
+                <div
+                    id="caseId"
+                    class="case-hero-id"
+                >
+                    —
+                </div>
+
+            </div>
+
+
+            <div class="case-hero-status">
+
+                <div class="case-status-block">
+
+                    <span>
+                        CLASSIFICATION
+                    </span>
+
+                    <strong id="classification">
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div class="case-status-block">
+
+                    <span>
+                        STATUS
+                    </span>
+
+                    <strong id="caseStatus">
+                        —
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             FINANCIAL IMPACT
+             ================================================= -->
+
+        <section class="kpi-grid three-column">
+
+            <div class="kpi-card">
+
+                <div class="kpi-label">
+                    EXPECTED
+                </div>
+
+                <div
+                    id="expectedAmount"
+                    class="kpi-value"
+                >
+                    —
+                </div>
+
+                <div class="kpi-caption">
+                    expected settlement
+                </div>
+
+            </div>
+
+
+            <div class="kpi-card">
+
+                <div class="kpi-label">
+                    OBSERVED
+                </div>
+
+                <div
+                    id="observedAmount"
+                    class="kpi-value"
+                >
+                    —
+                </div>
+
+                <div class="kpi-caption">
+                    observed settlement
+                </div>
+
+            </div>
+
+
+            <div class="kpi-card">
+
+                <div class="kpi-label">
+                    RECOVERY
+                </div>
+
+                <div
+                    id="recoveryAmount"
+                    class="kpi-value"
+                >
+                    —
+                </div>
+
+                <div class="kpi-caption">
+                    financial impact
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             MONEY DNA
+             ================================================= -->
+
+        <section class="content-card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <div class="eyebrow">
+                        MONEY DNA
+                    </div>
+
+                    <h2>
+                        Source record identity
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="recordsContainer"
+                class="evidence-list"
+            ></div>
+
+        </section>
+
+
+        <!-- =================================================
+             PROOF CHAIN
+             ================================================= -->
+
+        <section class="content-card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <div class="eyebrow">
+                        PROOF CHAIN
+                    </div>
+
+                    <h2>
+                        Evidence-backed investigation
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="proofContainer"
+                class="proof-list"
+            ></div>
+
+        </section>
+
+
+        <!-- =================================================
+             PRINCIPLE
+             ================================================= -->
+
+        <section class="principle-card">
+
+            <div class="principle-badge">
+                INVESTIGATION PRINCIPLE
+            </div>
+
+            <h2>
+                Evidence before action.
+            </h2>
+
+            <p>
+                The deterministic Truth Engine establishes
+                financial reality. The Proof Chain records how
+                that conclusion was reached. AI may explain
+                the evidence, but it does not create financial
+                truth.
+            </p>
+
+        </section>
+
+
+        <footer class="page-footer">
+            MONEY AUTOPSY · Financial Investigation System
+        </footer>
+
+
+    </main>
+
+</div>
+
+
+<script
+    src="js/api.js?v=20260905b"
+></script>
+
+<script
+    src="js/investigation.js?v=20260905b"
+></script>
+
+</body>
+
+</html>
