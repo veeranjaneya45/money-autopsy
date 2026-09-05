@@ -1,4 +1,8 @@
-const API_BASE = "http://127.0.0.1:8000";
+const API_BASE =
+  window.location.hostname === "127.0.0.1" ||
+  window.location.hostname === "localhost"
+    ? "http://127.0.0.1:8000"
+    : "https://money-autopsy.onrender.com";
 async function request(path, options={}){const response=await fetch(`${API_BASE}${path}`,{headers:{"Content-Type":"application/json",...(options.headers||{})},...options});if(!response.ok){let detail=`HTTP ${response.status}`;try{const body=await response.json();detail=body.detail||body.message||detail}catch(_){}throw new Error(detail)}return response.json()}
 async function getStats(){return request("/api/stats")}
 async function getCases(limit=50){return request(`/api/cases?limit=${encodeURIComponent(limit)}`)}
